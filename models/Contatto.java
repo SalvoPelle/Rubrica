@@ -1,5 +1,8 @@
 package com.example.Rubrica.models;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Contatto {
 
     private Long id;

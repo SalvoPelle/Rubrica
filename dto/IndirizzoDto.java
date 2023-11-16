@@ -2,11 +2,20 @@ package com.example.Rubrica.dto;
 
 public class IndirizzoDto {
 
+    private Long id;
     private String via;
     private Integer numeroCivico;
     private String citta;
     private Integer cap;
     private String provincia;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getVia() {
         return via;

@@ -8,6 +8,7 @@ public class RubricaApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(RubricaApplication.class, args);
+		System.out.println("Rubrica started");
 	}
 
 }
