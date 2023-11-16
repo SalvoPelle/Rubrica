@@ -1,9 +1,13 @@
 package com.example.Rubrica.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "indirizzo")
 public class Indirizzo {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String via;
     private Integer numeroCivico;

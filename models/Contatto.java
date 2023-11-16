@@ -1,15 +1,20 @@
 package com.example.Rubrica.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 @Entity
+@Table(name = "contatto")
 public class Contatto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String surname;
     private Integer cell;
     private String email;
+    @OneToOne
+    @JoinColumn(name = "indirizzo_id")
     private Indirizzo address;
     private String company;
 
