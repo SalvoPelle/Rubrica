@@ -79,6 +79,47 @@ public class ContattoServ {
         return null;
     }
 
+    public List<ContattoDto> getContattoByString (String research) {
+        List<Contatto> contatti = contattoRepo.findAll();
+        List<ContattoDto> contattoFound = new ArrayList<>();
+
+        for (Contatto c : contatti) {
+            ContattoDto cDto = new ContattoDto();
+            if (!contatti.isEmpty()) {
+                if (c.getName().toLowerCase().contains(research) || c.getSurname().toLowerCase().contains(research) ||
+                        c.getEmail().toLowerCase().contains(research)) {
+
+                    cDto.setId(c.getId());
+                    cDto.setName(c.getName());
+                    cDto.setSurname(c.getSurname());
+                    cDto.setCell(c.getCell());
+                    cDto.setEmail(c.getEmail());
+                    cDto.setCompany(c.getCompany());
+
+                    IndirizzoDto iDto = new IndirizzoDto();
+                    Indirizzo i = new Indirizzo();
+
+                    if (i != null) {
+                        iDto.setVia(i.getVia());
+                        iDto.setNumeroCivico(i.getNumeroCivico());
+                        iDto.setCap(i.getCap());
+                        iDto.setCitta(i.getCitta());
+                        iDto.setProvincia(i.getProvincia());
+                        cDto.setAddress(i);
+
+                    } else {
+                        cDto.setAddress(null);
+                    }
+
+                    contattoFound.add(cDto);
+                }
+            } else {
+                return null;
+            }
+        }
+        return contattoFound;
+    }
+
     public List<ContattoDto> getContatti(){
         List<Contatto> contatti = contattoRepo.findAll();
         List<ContattoDto> contattiDto = new ArrayList<>();

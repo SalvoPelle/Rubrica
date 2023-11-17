@@ -24,6 +24,11 @@ public class ContattoController {
         return ResponseEntity.ok().body(contattoServ.getContattoById(id));
     }
 
+    @GetMapping("/cerca-contatto/stringa/{research}")
+    public ResponseEntity<?> findContactByString (@PathVariable String research) {
+        return ResponseEntity.ok().body(contattoServ.getContattoByString(research));
+    }
+
     @GetMapping("/cerca-contatti")
     public ResponseEntity<?> findContact () {
         return ResponseEntity.ok().body(contattoServ.getContatti());
