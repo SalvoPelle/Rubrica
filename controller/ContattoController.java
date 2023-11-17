@@ -23,4 +23,9 @@ public class ContattoController {
     public ResponseEntity<?> findContact (@PathVariable Long id) {
         return ResponseEntity.ok().body(contattoServ.getContattoById(id));
     }
+
+    @GetMapping("/cerca-contatti")
+    public ResponseEntity<?> findContact () {
+        return ResponseEntity.ok().body(contattoServ.getContatti());
+    }
 }

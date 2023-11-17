@@ -9,6 +9,8 @@ import com.example.Rubrica.repository.IndirizzoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -73,6 +75,39 @@ public class ContattoServ {
             return cDto;
         }
         return null;
+    }
+
+    public List<ContattoDto> getContatti(){
+        List<Contatto> contatti = contattoRepo.findAll();
+        List<ContattoDto> contattiDto = new ArrayList<>();
+
+        for (Contatto c : contatti){
+            ContattoDto cDto = new ContattoDto();
+            if (!contatti.isEmpty()){
+                cDto.setId(c.getId());
+                cDto.setName(c.getName());
+                cDto.setSurname(c.getSurname());
+                cDto.setCell(c.getCell());
+                cDto.setEmail(c.getEmail());
+                cDto.setCompany(c.getCompany());
+
+                IndirizzoDto iDto = new IndirizzoDto();
+                Indirizzo i = new Indirizzo();
+
+                if (i != null){
+                    iDto.setVia(i.getVia());
+                    iDto.setNumeroCivico(i.getNumeroCivico());
+                    iDto.setCap(i.getCap());
+                    iDto.setCitta(i.getCitta());
+                    iDto.setProvincia(i.getProvincia());
+                    cDto.setAddress(i);
+                } else {
+                    cDto.setAddress(null);
+                }
+                contattiDto.add(cDto);
+            }
+        }
+        return contattiDto;
     }
 
 }
