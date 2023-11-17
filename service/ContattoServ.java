@@ -33,7 +33,6 @@ public class ContattoServ {
         Indirizzo i = new Indirizzo();
 
         if (iDto != null){
-            i.setId(iDto.getId());
             i.setVia(iDto.getVia());
             i.setNumeroCivico(iDto.getNumeroCivico());
             i.setCap(i.getCap());
