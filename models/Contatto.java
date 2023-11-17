@@ -20,7 +20,7 @@ public class Contatto {
     @OneToOne
     @JoinColumn(name = "indirizzo_id", nullable = true)
     private Indirizzo address;
-    private String company;
+    private String company = "";
 
     public Contatto() {
     }

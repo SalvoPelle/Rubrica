@@ -87,7 +87,7 @@ public class ContattoServ {
             ContattoDto cDto = new ContattoDto();
             if (!contatti.isEmpty()) {
                 if (c.getName().toLowerCase().contains(research) || c.getSurname().toLowerCase().contains(research) ||
-                        c.getEmail().toLowerCase().contains(research)) {
+                        c.getEmail().toLowerCase().contains(research)) {  // || c.getCompany().toLowerCase().contains(research) per utilizzare questa condizione devo fare delle prove col database per eliminare i campi null
 
                     cDto.setId(c.getId());
                     cDto.setName(c.getName());
