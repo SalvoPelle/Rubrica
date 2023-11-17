@@ -33,12 +33,15 @@ public class ContattoServ {
         Indirizzo i = new Indirizzo();
 
         if (iDto != null){
+            i.setId(iDto.getId());
             i.setVia(iDto.getVia());
             i.setNumeroCivico(iDto.getNumeroCivico());
             i.setCap(i.getCap());
             i.setCitta(iDto.getCitta());
             i.setProvincia(iDto.getProvincia());
+            indirizzoRepo.save(i);
             c1.setAddress(i);
+
         } else {
             c1.setAddress(null);
         }
