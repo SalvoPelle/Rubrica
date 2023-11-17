@@ -9,10 +9,15 @@ public class Indirizzo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "via")
     private String via;
+    @Column(name = "numeroCivico")
     private Integer numeroCivico;
+    @Column(name = "citta")
     private String citta;
+    @Column(name = "cap")
     private Integer cap;
+    @Column(name = "provincia")
     private String provincia;
 
     public Indirizzo() {

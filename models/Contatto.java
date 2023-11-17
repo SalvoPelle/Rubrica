@@ -9,12 +9,16 @@ public class Contatto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "surname")
     private String surname;
+    @Column(name = "cell")
     private Integer cell;
+    @Column(name = "email")
     private String email;
     @OneToOne
-    @JoinColumn(name = "indirizzo_id")
+    @JoinColumn(name = "indirizzo_id", nullable = true)
     private Indirizzo address;
     private String company;
 
