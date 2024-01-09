@@ -1,6 +1,7 @@
 package com.example.Rubrica.controller;
 
 import com.example.Rubrica.dto.ContattoDto;
+import com.example.Rubrica.models.Contatto;
 import com.example.Rubrica.service.ContattoServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,5 +33,17 @@ public class ContattoController {
     @GetMapping("/cerca-contatti")
     public ResponseEntity<?> findContact () {
         return ResponseEntity.ok().body(contattoServ.getContatti());
+    }
+
+    @PutMapping("/modifica-contatto/{id}")
+    public ResponseEntity<?> updateContact (@PathVariable Long id, @RequestBody ContattoDto cDto) {
+        contattoServ.updateContact(cDto);
+        return ResponseEntity.ok().body("Contatto modificato correttamente");
+    }
+
+    @DeleteMapping("/cancella-contatto/{id}")
+    public ResponseEntity<?> deletContact(@PathVariable Long id){
+        contattoServ.deleteContactById(id);
+        return ResponseEntity.ok().body("Utente cancellato");
     }
 }

@@ -8,6 +8,8 @@ import com.example.Rubrica.repository.ContattoRepo;
 import com.example.Rubrica.repository.IndirizzoRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,7 +89,7 @@ public class ContattoServ {
             ContattoDto cDto = new ContattoDto();
             if (!contatti.isEmpty()) {
                 if (c.getName().toLowerCase().contains(research) || c.getSurname().toLowerCase().contains(research) ||
-                        c.getEmail().toLowerCase().contains(research)) {  // || c.getCompany().toLowerCase().contains(research) per utilizzare questa condizione devo fare delle prove col database per eliminare i campi null
+                        c.getEmail().toLowerCase().contains(research) || c.getCompany().toLowerCase().contains(research)) {  //  per utilizzare questa condizione devo fare delle prove col database per eliminare i campi null
 
                     cDto.setId(c.getId());
                     cDto.setName(c.getName());
@@ -151,6 +153,72 @@ public class ContattoServ {
             }
         }
         return contattiDto;
+    }
+
+    public void updateContact(ContattoDto cDto){
+
+        if (cDto.getId()==null) {
+            throw new RuntimeException("Contatto non trovato");
+        }
+
+        Contatto c = new Contatto();
+        c.setId(cDto.getId());
+        c.setName(cDto.getName());
+        c.setSurname(cDto.getSurname());
+        c.setCell(cDto.getCell());
+        c.setEmail(cDto.getEmail());
+        c.setCompany(cDto.getCompany());
+
+        IndirizzoDto iDto = new IndirizzoDto();
+        Indirizzo i = new Indirizzo();
+
+        if (iDto != null) {
+            i.setId(iDto.getId());
+            i.setVia(iDto.getVia());
+            i.setNumeroCivico(iDto.getNumeroCivico());
+            i.setCap(i.getCap());
+            i.setCitta(iDto.getCitta());
+            i.setProvincia(iDto.getProvincia());
+            indirizzoRepo.save(i);
+            c.setAddress(i);
+        }
+        else {
+        c.setAddress(null);
+        }
+        contattoRepo.save(c);
+
+//    Optional<Contatto> optionalContatto = contattoRepo.findById(cDto.getId());
+//    if (optionalContatto.isPresent()){
+//        Contatto c = optionalContatto.get();
+//        c.setName(cDto.getName());
+//        c.setSurname(cDto.getSurname());
+//        c.setCell(cDto.getCell());
+//        c.setEmail(cDto.getEmail());
+//        c.setCompany(cDto.getCompany());
+//
+//        IndirizzoDto iDto = new IndirizzoDto();
+//        Indirizzo i = new Indirizzo();
+//
+//        if (iDto != null) {
+//            i.setVia(iDto.getVia());
+//            i.setNumeroCivico(iDto.getNumeroCivico());
+//            i.setCap(i.getCap());
+//            i.setCitta(iDto.getCitta());
+//            i.setProvincia(iDto.getProvincia());
+//            indirizzoRepo.save(i);
+//            c.setAddress(i);
+//        }
+//        else {
+//        c.setAddress(null);
+//        }
+//        contattoRepo.save(c);
+//    }
+
+    }
+
+    public void deleteContactById(Long id){
+        contattoRepo.deleteById(id);
+
     }
 
 }
