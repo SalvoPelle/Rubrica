@@ -1,6 +1,7 @@
 package com.example.Rubrica.models;
 
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
 @Table(name = "indirizzo")

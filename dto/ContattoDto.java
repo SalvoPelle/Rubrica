@@ -8,7 +8,7 @@ public class ContattoDto {
     private String surname;
     private Integer cell;
     private String email;
-    private Indirizzo address;
+    private IndirizzoDto address;
     private String company;
 
     public Long getId() {
@@ -51,11 +51,11 @@ public class ContattoDto {
         this.email = email;
     }
 
-    public Indirizzo getAddress() {
+    public IndirizzoDto getAddress() {
         return address;
     }
 
-    public void setAddress(Indirizzo address) {
+    public void setAddress(IndirizzoDto address) {
         this.address = address;
     }
 
