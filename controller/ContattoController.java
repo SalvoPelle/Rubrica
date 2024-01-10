@@ -1,6 +1,7 @@
 package com.example.Rubrica.controller;
 
 import com.example.Rubrica.dto.ContattoDto;
+import com.example.Rubrica.dto.IndirizzoDto;
 import com.example.Rubrica.models.Contatto;
 import com.example.Rubrica.service.ContattoServ;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,12 @@ public class ContattoController {
         contattoServ.addContact(cDto);
         return ResponseEntity.ok().body("Utente inserito correttamente");
     }
+
+//    @PostMapping("/nuovo-contatto")
+//    public ResponseEntity<?> addContact (@RequestBody ContattoDto cDto, IndirizzoDto iDto) {
+//        contattoServ.addContact(cDto, iDto);
+//        return ResponseEntity.ok().body("Utente inserito correttamente");
+//    }
 
     @GetMapping("/cerca-contatto/{id}")
     public ResponseEntity<?> findContact (@PathVariable Long id) {
