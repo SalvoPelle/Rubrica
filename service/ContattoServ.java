@@ -23,10 +23,7 @@ public class ContattoServ {
     @Autowired
     private IndirizzoRepo indirizzoRepo;
 
-    public void addContact (ContattoDto cDto){ // sto cercando di mettere l'id dell'indirizzo uguale a quello del contatto. il problema si pone perchè il valore dell'id contatto si genera dopo
-                                                // il metodo save quindi l'id dell'indirizzo mi risulta sempre null e di conseguenza non salva nulla. doveri fare il metodo save prima di
-                                                // inizializzare l'indirizzo. non so se funziona. un'altra ipotesi sarebbe unificare le classi (non l'avevo fatto per fare una prova). ovviamente
-                                                // avrei un'unica tabella e tutto sarebbe più semplice.
+    public void addContact (ContattoDto cDto){
         Contatto c1 = new Contatto();
         c1.setName(cDto.getName());
         c1.setSurname(cDto.getSurname());
@@ -38,7 +35,7 @@ public class ContattoServ {
         Indirizzo i = new Indirizzo();
 
         if (iDto != null){
-//            i.setId(iDto.getId());
+            i.setId(iDto.getId());
             i.setVia(iDto.getVia());
             i.setNumeroCivico(iDto.getNumeroCivico());
             i.setCap(iDto.getCap());
@@ -103,7 +100,6 @@ public class ContattoServ {
                     cDto.setCompany(c.getCompany());
 
                     IndirizzoDto iDto = new IndirizzoDto();
-                     // sostituire l'indirizzo con c.getAddress
 
                     if (i != null) {
                         iDto.setVia(i.getVia());
@@ -145,6 +141,7 @@ public class ContattoServ {
 
 
                 if (i != null){
+                    iDto.setId(i.getId());
                     iDto.setVia(i.getVia());
                     iDto.setNumeroCivico(i.getNumeroCivico());
                     iDto.setCap(i.getCap());
@@ -160,7 +157,7 @@ public class ContattoServ {
         return contattiDto;
     }
 
-    public void updateContact(ContattoDto cDto){
+    public void updateContact(ContattoDto cDto){ // verificare metodo e correggere errori
 
         if (cDto.getId()==null) {
             throw new RuntimeException("Contatto non trovato");
@@ -178,6 +175,7 @@ public class ContattoServ {
         Indirizzo i = new Indirizzo();
 
         if (iDto != null) {
+            i.setId(iDto.getId());
             i.setVia(iDto.getVia());
             i.setNumeroCivico(iDto.getNumeroCivico());
             i.setCap(i.getCap());
@@ -224,34 +222,5 @@ public class ContattoServ {
         contattoRepo.deleteById(id);
 
     }
-
-//    public void addContact (ContattoDto cDto, IndirizzoDto iDto){ // sto cercando di mettere l'id dell'indirizzo uguale a quello del contatto. il problema si pone perchè il valore dell'id contatto si genera dopo
-//        // il metodo save quindi l'id dell'indirizzo mi risulta sempre null e di conseguenza non salva nulla. doveri fare il metodo save prima di
-//        // inizializzare l'indirizzo. non so se funziona. un'altra ipotesi sarebbe unificare le classi (non l'avevo fatto per fare una prova). ovviamente
-//        // avrei un'unica tabella e tutto sarebbe più semplice.
-//        Contatto c1 = new Contatto();
-//        c1.setName(cDto.getName());
-//        c1.setSurname(cDto.getSurname());
-//        c1.setCell(cDto.getCell());
-//        c1.setEmail(cDto.getEmail());
-//        c1.setCompany(cDto.getCompany());
-//
-//
-//        if (iDto != null){
-//        Indirizzo i = new Indirizzo();
-////            i.setId(iDto.getId());
-//        i.setVia(iDto.getVia());
-//        i.setNumeroCivico(iDto.getNumeroCivico());
-//        i.setCap(iDto.getCap());
-//        i.setCitta(iDto.getCitta());
-//        i.setProvincia(iDto.getProvincia());
-//        indirizzoRepo.save(i);
-//        c1.setAddress(i);
-//
-//        } else {
-//            c1.setAddress(null);
-//        }
-//        contattoRepo.save(c1);
-//    }
 
 }
