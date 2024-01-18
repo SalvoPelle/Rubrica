@@ -220,7 +220,8 @@ public class ContattoServ {
 
     public void deleteContactById(Long id){
         contattoRepo.deleteById(id);
-
     }
+
+    // public void deleteByIdAndName(Contatto dto){}
 
 }
