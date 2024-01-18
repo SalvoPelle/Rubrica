@@ -21,12 +21,6 @@ public class ContattoController {
         return ResponseEntity.ok().body("Utente inserito correttamente");
     }
 
-//    @PostMapping("/nuovo-contatto")
-//    public ResponseEntity<?> addContact (@RequestBody ContattoDto cDto, IndirizzoDto iDto) {
-//        contattoServ.addContact(cDto, iDto);
-//        return ResponseEntity.ok().body("Utente inserito correttamente");
-//    }
-
     @GetMapping("/cerca-contatto/{id}")
     public ResponseEntity<?> findContact (@PathVariable Long id) {
         return ResponseEntity.ok().body(contattoServ.getContattoById(id));
